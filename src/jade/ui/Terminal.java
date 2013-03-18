@@ -244,7 +244,7 @@ public abstract class Terminal
      */
     public void bufferCamera(Camera camera)
     {
-        Guard.argumentIsNotNull(camera);
+    	Guard.argumentIsNotNull(camera);
         Guard.verifyState(cameraRegistered(camera));
 
         Coordinate screenCenter = cameras.get(camera);
@@ -252,7 +252,7 @@ public abstract class Terminal
         int offY = screenCenter.y() - camera.y();
         World world = camera.world();
         for(Coordinate coord : camera.getViewField())
-            bufferChar(coord.getTranslated(offX, offY), world.look(coord));
+            bufferChar(coord.getTranslated(offX, offY-1), world.look(coord));
     }
 
     /**

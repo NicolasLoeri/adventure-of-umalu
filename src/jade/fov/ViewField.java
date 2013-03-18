@@ -20,6 +20,7 @@ public abstract class ViewField
      * @return the field of view on world from (x, y)
      */
     protected abstract Collection<Coordinate> calcViewField(World world, int x, int y, int r);
+    protected abstract Collection<Coordinate> calcViewFieldplayer(World world, int x, int y, int r);
 
     /**
      * Calculates the field of view on the given {@code World} from the given (x, y) coordinates
@@ -30,6 +31,7 @@ public abstract class ViewField
      * @param r the radius of the field of view
      * @return the field of view on world from (x, y)
      */
+    
     public final Collection<Coordinate> getViewField(World world, int x, int y, int r)
     {
         Guard.argumentIsNotNull(world);
@@ -38,6 +40,16 @@ public abstract class ViewField
 
         return calcViewField(world, x, y, r);
     }
+
+    public final Collection<Coordinate> getViewFieldplayer(World world, int x, int y, int r)
+    {
+        Guard.argumentIsNotNull(world);
+        Guard.argumentsInsideBounds(x, y, world.width(), world.height());
+        Guard.argumentIsNonNegative(r);
+
+        return calcViewFieldplayer(world, x, y, r);
+    }
+
 
     /**
      * Calculates the field of view on the given {@code World} from the given {@code Coordinate}

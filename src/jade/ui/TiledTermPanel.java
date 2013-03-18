@@ -100,7 +100,7 @@ public class TiledTermPanel extends TermPanel
         super.refreshScreen();
     }
 
-    @Override
+ /*      @Override
     public void bufferCamera(Camera camera)
     {
         Guard.argumentIsNotNull(camera);
@@ -113,7 +113,7 @@ public class TiledTermPanel extends TermPanel
         for(Coordinate coord : camera.getViewField())
             tileBuffer.put(coord.getTranslated(offX, offY),
                     world.lookAll(coord));
-    }
+    }*/
 
     @Override
     public void bufferRelative(Camera camera, ColoredChar ch, int x, int y)

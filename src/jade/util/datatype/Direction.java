@@ -97,15 +97,18 @@ public enum Direction
          		return SOUTH;
            	case '3':
            	case 'n':
+           	case 'c':
           		return SOUTHEAST;
            	case '1':
            	case 'b':
+           	case 'y':
            		return SOUTHWEST;
            	case '9':
            	case 'u':
+           	case 'e':
            		return NORTHEAST;
            	case '7':
-           	case 'y':
+           	case 'q':
            		return NORTHWEST;
            	case '5':
            	case '.':

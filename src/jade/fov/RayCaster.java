@@ -30,9 +30,8 @@ public class RayCaster extends ViewField
     {
         Collection<Coordinate> fov = new HashSet<Coordinate>();
         fov.add(new Coordinate(x, y));
-
-        for(int dx = -r; dx <= r; dx++)
-        {
+        for(int dx =-r ;dx <= r; dx++)
+        {	
             fov.addAll(raycaster.getPartialPath(world, x, y, x + dx, y - r));
             fov.addAll(raycaster.getPartialPath(world, x, y, x + dx, y + r));
         }
@@ -41,7 +40,40 @@ public class RayCaster extends ViewField
             fov.addAll(raycaster.getPartialPath(world, x, y, x - r, y + dy));
             fov.addAll(raycaster.getPartialPath(world, x, y, x + r, y + dy));
         }
+        return fov;
+    	}
+        //alle als sichtbar markierten Objekte werden im Screen angezeigt 
 
+    	protected Collection<Coordinate> calcViewFieldplayer(World world, int x, int y, int r){
+    	Collection<Coordinate> fov = calcViewField(world, x, y,r);
+        for(int i = 0; i<world.width()-1; i++){
+        	for(int j=0; j<world.height()-1; j++){
+        	 if(world.isviewable(i, j)){
+        	 fov.addAll(raycaster.getPartialPath(world, i+1,j+1,i,j));
+        	 }
+        }
+        }
+        for(int i =world.width()-1;i>0; i--){
+        	for(int j=world.height()-1;j>0; j--){
+        	 if(world.isviewable(i, j)){
+        	 fov.addAll(raycaster.getPartialPath(world,i-1,j-1,i,j));
+        	 }
+        }
+        }
+        for(int i =world.width()-1;i>0; i--){
+        	for(int j=0;j<world.height()-1; j++){
+        	 if(world.isviewable(i, j)){
+        	 fov.addAll(raycaster.getPartialPath(world,i-1,j+1,i,j));
+        	 }
+        }
+        }
+        for(int i=0;i<world.width()-1; i++){
+        	for(int j=world.height()-1;j>0; j--){
+        	 if(world.isviewable(i, j)){
+        	 fov.addAll(raycaster.getPartialPath(world,i+1,j-1,i,j));
+        	 }
+        }
+        }
         return fov;
     }
 }

@@ -140,5 +140,12 @@ public class ViewFieldTest
         {
             return expected;
         }
+
+		@Override
+		protected Collection<Coordinate> calcViewFieldplayer(World world,
+				int x, int y, int r) {
+			// TODO Auto-generated method stub
+			return null;
+		}
     }
 }

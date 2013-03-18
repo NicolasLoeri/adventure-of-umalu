@@ -19,7 +19,7 @@ import java.util.TreeSet;
 public class AStar extends PathFinder
 {
     @Override
-    protected List<Coordinate> calcPath(World world, Coordinate start, Coordinate end)
+    public List<Coordinate> calcPath(World world, Coordinate start, Coordinate end)
     {
         NodeSet nodes = new NodeSet(world, end);
         nodes.get(start).gCost = 0;
@@ -30,17 +30,20 @@ public class AStar extends PathFinder
 
         while(!open.isEmpty())
         {
+
+            //take node with smallest fScore
             Node node = open.pollFirst();
             closed.add(node);
 
             if(node.equals(end))
                 return reconstructPath(node);
-
+            //check out the neighbors of the current node
             for(Node neighbor : expandNode(node, world, nodes))
             {
                 if(closed.contains(neighbor))
                     continue;
-
+                // and update their gCost, if you found a shorter Path to them
+                // meanwhile the order of the Elements in open is updated
                 double gCost = node.gCost + gCost(node, neighbor);
                 if(gCost < neighbor.gCost)
                 {

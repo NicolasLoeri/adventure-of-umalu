@@ -133,4 +133,11 @@ public class ShadowCaster extends ViewField
         }
         return prev;
     }
+
+	@Override
+	protected Collection<Coordinate> calcViewFieldplayer(World world, int x,
+			int y, int r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

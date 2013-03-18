@@ -54,7 +54,6 @@ public abstract class PathFinder
     {
         return getPartialPath(world, new Coordinate(posX, posY), new Coordinate(endX, endY));
     }
-
     /**
      * Returns a partial path from the given start to end on the provided {@code World}. Since the
      * path is complete, it will either be null, or terminate at the given end.
